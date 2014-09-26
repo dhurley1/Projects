@@ -20,7 +20,7 @@ $error="<p>Unable to connect to the database server.</p>\n "
  
 else
 {
-   $DBName="r00068614dvds";
+   $DBName="r00068614dvd";
    $TableName="titles";
    if(!mysqli_select_db($DBConnection,$DBName))
    {
@@ -70,10 +70,8 @@ else
 			   "<td>".$report['filmDuration']."</td>".
 			   "<td>".$report['director']."</td>".
                "<td>".$report['description']."</td>".		
-              "<td><a href=\"update.php?ID=".
+              "<td><a href=\"EnterBugReport.php?ReportID=".
 			         $report['ID']."\">Update</a></td>".
-			   "<td><a href=\"delete.php?ID=".
-			         $report['ID']."\">Delete</a></td>".
 			   "</tr>\n";
 		}
 		echo "</table>\n";
@@ -81,7 +79,7 @@ else
       }
 }}
 ?>
-<a href="EnterBugReport.php">Enter a new movie</a>
+<a href="EnterBugReport.php">Enter a new bug report</a>
 
 
 
