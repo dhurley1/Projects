@@ -1,0 +1,15 @@
+<?php
+
+//tracks date last time accessed
+ date_default_timezone_set('Europe/London');
+ 
+
+	setcookie('Visit', isset($_COOKIE['Visit']) ? date("F jS g:i a ") : 1);
+
+	  if(isset($_COOKIE['Visit']))
+		{
+		$last = $_COOKIE['Visit'];
+		echo "You last visited this page on ". $last;
+		}
+		
+?>
