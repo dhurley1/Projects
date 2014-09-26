@@ -1,0 +1,48 @@
+body{
+
+}
+
+#database tr:nth-child(even) {background: #CCC}
+
+table{
+font:normal 76%/150% 'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;
+
+    border-collapse:separate;
+
+    border-spacing:0;
+
+    margin:0 0 1em;
+
+    color:#000;
+
+
+}
+
+#database th {
+
+    font-weight:bold;
+
+    line-height:normal;
+
+    padding:0.25em 0.5em;
+
+    text-align:left;
+	background: lightblue;
+  border-color: white;
+
+    }
+
+
+
+ #database  tr:hover td {
+
+    background:#ffffee;
+
+    border-color:#523A0B;
+
+    }
+	
+	
+
+
+
