@@ -1,0 +1,15 @@
+ <?php
+ 
+     //keep track of how many times page iis accessed
+	 setcookie('user', isset($_COOKIE['user']) ? $_COOKIE['user']+1 :1,time() + (86400 * 30));
+	
+	if(isset($_COOKIE['user']))
+		{	
+			  
+			   echo "<br>access this site ". $_COOKIE['user']." time(s)<br>";
+			   
+			  
+  
+	  } 
+
+?>
