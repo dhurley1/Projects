@@ -1,0 +1,93 @@
+import java.util.Date;
+
+
+public class PatientHistory implements java.io.Serializable {
+
+	private int historyId;
+	private int patientId;
+	private int doctorId;		
+	private Date visitDate;
+	private String description;
+	private String medicine;
+	private String procedure;
+	
+	public PatientHistory()
+	{
+		
+		
+	}
+	
+	public PatientHistory(int patientId,int doctorId,String description, String medicine, String procedure)
+	{
+         historyId=historyId;
+		patientId=patientId;
+		doctorId=doctorId;
+		visitDate=visitDate;
+		description=description;
+		medicine=medicine;
+		procedure=procedure;
+		
+	}
+	
+	public void setHistId()
+	{
+		this.historyId=historyId;
+	}
+	
+	public void setPatientId()
+	{
+		this.patientId=patientId;
+	}
+	public void setDoctorId()
+	{
+		this.doctorId=doctorId;
+	}
+	public void setDate()
+	{
+		this.visitDate=visitDate;
+	}
+	public void setdescription()
+	{
+		this.description=description;
+	}
+	public void setMed()
+	{
+		this.medicine=medicine;
+	}
+	public void setprocedure()
+	{
+		this.procedure=procedure;
+	}
+	
+	public int getHistId()
+	{
+		return historyId;
+	}
+	
+	public int getPatientId()
+	{
+		return patientId;
+	}
+	public int getDoctorId()
+	{
+		return doctorId;
+	}
+	public Date getDate()
+	{
+		 return visitDate;
+	}
+	public String getdescription()
+	{
+		return description;
+	}
+	public String getMed()
+	{
+		return medicine;
+	}
+	public String getprocedure()
+	{
+		return procedure;
+	}
+	
+	
+}
