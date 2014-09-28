@@ -1,0 +1,266 @@
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.awt.*;
+
+import javax.swing.*;
+
+import java.awt.event.*;
+import java.awt.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Date;
+import java.sql.*;
+
+public class DoctorGui extends Database
+{
+	
+	JFrame f;
+	JLabel name;
+	JLabel dName;
+	
+	JTextField t1;
+	JTextField t2;
+	JTextField t3;
+	JTextField t4;
+	JTextField t5;
+	
+	JTextArea ListOfPatients = new JTextArea(" Id     name   Phone NumberAddress  DOB");
+   
+    JButton PAdd = new JButton ("Add Patient");
+    JButton save = new JButton ("Save Patient");
+    JButton load = new JButton ("Load Patient");
+    JButton next = new JButton ("next Patient");
+    JButton pre = new JButton ("previous Patient");
+    JButton up = new JButton ("update Patient");
+    JButton del = new JButton ("delete Patient");
+    
+	public DoctorGui(){
+		
+		frame();
+	}
+	
+	public void frame(){
+		
+		f= new JFrame();
+		f.setVisible(true);
+		//f.setSize(600,400);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+		name= new JLabel("Doctor Name");
+		dName= new JLabel("Patient Name");
+		
+		
+		t1= new JTextField(10);
+		t2= new JTextField(10);
+		
+		
+		 
+		JPanel p=new JPanel();
+		;
+		p.add(name);p.add(t1);
+		p.add(dName);p.add(t2);
+		
+		
+		//p.add(ListOfPatients);
+		p.add(PAdd);
+		p.add(save);
+		p.add(next);
+		p.add(pre);
+		p.add(del);
+		p.add(up);
+		
+		 up.addActionListener(new ActionListener() 
+         {
+             public void actionPerformed(ActionEvent e)
+             {
+            	
+            	String name= t1.getText();
+            	String  dname= t2.getText();
+            	  
+            	
+                
+                try{
+                
+                	rs.updateString("PNAME", name);
+                	rs.updateString("DNAME",dname );
+                	rs.updateRow();
+                	
+                	JOptionPane.showMessageDialog(null,"updated");
+                }catch(Exception ex){
+                	
+                }
+           	   
+           	   
+           	   
+             }
+             
+         });
+		 
+		PAdd.addActionListener(new ActionListener() 
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+            	
+            	t2.setText("");
+            	t1.setText("");
+            	
+            	
+            }
+            
+        });
+		
+		save.addActionListener(new ActionListener() 
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+            	String dname=t1.getText();
+            	String name=t2.getText();
+            	
+            	
+            	
+            
+            
+            try
+            {
+            	rs.moveToInsertRow();
+            	rs.updateString("DNAME",dname);
+            	rs.updateString("PNAME",name);
+            	
+            	
+            	rs.insertRow();
+            	stmt.close();
+            	rs.close();
+            	
+            }catch(Exception ex){
+            	
+            }
+            }
+        });
+		
+		
+		
+		 del.addActionListener(new ActionListener() 
+         {
+             public void actionPerformed(ActionEvent e)
+             {
+            	try {
+					rs.deleteRow();
+					
+					stmt.close();
+					rs.close();
+					
+					
+				      
+				     
+				    /*  stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+
+				      String sql="select * from patient";
+				       rs = stmt.executeQuery(sql);
+				       
+				       rs.next();*/
+				} catch (Exception ex) {
+					
+				} 
+             }
+             
+         });
+          	   
+            
+		 next.addActionListener(new ActionListener() 
+         {
+             public void actionPerformed(ActionEvent e)
+             {
+          	   try{
+          		   if (rs.next())
+          		   {
+          			 t1.setText(rs.getString("DNAME")); 
+          			 t2.setText(rs.getString("PNAME")); 
+          			 
+          			 
+          			 
+          		   }
+          		   
+          		   else{
+          			   rs.previous();
+          			   JOptionPane.showMessageDialog(null,"No more records");
+          		   }
+          		   
+          	   }catch(Exception ex){
+          		   
+          	   }
+          	   
+          	   
+          	   
+             }
+             
+         });
+	
+		
+		 pre.addActionListener(new ActionListener() 
+         {
+             public void actionPerformed(ActionEvent e)
+             {
+          	   try{
+          		   if (rs.previous())
+          		   {
+          			 t1.setText(rs.getString("DNAME")); 
+          			 t2.setText(rs.getString("PNAME")); 
+          			 
+          			 
+          			 
+          		   }
+          		   
+          		   else{
+          			   rs.next();
+          			   JOptionPane.showMessageDialog(null,"No more records");
+          		   }
+          		   
+          	   }catch(Exception ex){
+          		   
+          	   }
+          	   
+          	   
+          	   
+             }
+             
+         });
+		
+		f.add(p);
+		f.setSize(800,800);
+		
+		try{
+			rs.next();
+			
+			
+		
+			 t1.setText(rs.getString("DNAME")); 
+			 t2.setText(rs.getString("PNAME")); 
+			  
+			
+			
+		}catch(Exception ex) {
+			
+		}
+		
+		
+       /*  t1.setLocation(10,40);
+         t2.setLocation(20,80);
+         t4.setLocation(50,100);
+        t3.setLocation(80,120);
+        t5.setLocation(100,140);
+         */
+	}
+	
+	
+	
+	
+}
+
