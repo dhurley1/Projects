@@ -1,0 +1,159 @@
+body
+{
+font-family:san serif;
+}
+
+
+#content
+{
+margin-left:5%;	
+margin-right:5%;
+}
+
+#switchFlickr{
+float:left;
+margin-left:10%;
+}
+
+#switchFlickr h2
+{
+text-align:center;
+}
+
+#switchFlickr img:hover
+{
+cursor:pointer;
+}
+
+#canvasContent
+{
+background-color:#2E2E2E;
+text-align:center;
+border-radius:10px;
+margin-left:20%;
+margin-right:15%;
+overflow: auto;
+}
+
+canvas
+{
+border:2px solid white;
+background: white;
+margin:10px 10px;
+margin-bottom:10px;
+}
+
+canvas:hover
+{
+cursor:crosshair;
+}
+
+#options
+{
+font-family: sans-serif;
+margin-bottom: 15px;
+
+}
+#flickr
+{
+min-width:900px;
+margin-left:10%;	
+margin-right:10%;
+display: none;
+}
+
+#switch
+{
+float:left;
+margin-left:10%;
+}
+
+#switch h2
+{
+text-align:center;
+}
+
+#switch img:hover
+{
+cursor:pointer;
+}
+
+
+
+#main
+{
+background:#606060;
+margin-left:20%;
+margin-right:20%;
+height:80%;
+border-radius:10px;
+}
+
+#left
+{
+margin-left:30px;
+margin-top:100px;
+float:left;
+}
+
+#left h3
+{
+color:black;
+}
+
+#left input
+{
+
+border:black solid 2px;
+}
+
+#find
+{
+border:2px solid black;
+width:300px;
+height:80px;
+text-align: center;
+line-height:90px;
+background: #E0E0E0;
+cursor: pointer;
+margin-bottom:100px;
+}
+
+#find img
+{
+padding-top:30px;
+}
+
+
+#right
+{
+border:2px solid black;
+background:white;
+height:80%;
+width:40%;
+float:right;
+margin-right:20px;
+margin-top:5%;
+overflow:scroll;
+text-align:center;
+font-size: 40px;
+}
+
+#right img
+{
+
+border:solid 2px black;
+height:200px;
+width:290px;
+margin:10px;
+
+}
+
+
+
+button
+{
+margin-top:10px;
+}
+
+
