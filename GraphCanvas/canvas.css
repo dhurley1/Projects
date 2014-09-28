@@ -1,0 +1,120 @@
+body
+{
+width:100%;
+background:black;
+
+}
+#canvas{
+background:#fa8072;
+-webkit-border-radius:12px;
+-moz-border-radius:12px;
+border-radius:12px;
+}
+
+
+
+#monday{
+margin-left:95px;
+margin-top:-50px;
+position:absolute;
+
+}
+#tuesday{
+
+margin-left:190px;
+margin-top:-50px;
+position:absolute;
+}
+#wednesday{
+margin-left:300px;
+margin-top:-50px;
+position:absolute;
+}
+
+#thursday{
+margin-left:410px;
+margin-top:-50px;
+position:absolute;
+}
+
+#friday{
+margin-left:510px;
+margin-top:-50px;
+position:absolute;
+}
+
+
+#saturday{
+margin-left:610px;
+margin-top:-50px;
+position:absolute;
+}
+
+#sunday{
+margin-left:710px;
+margin-top:-50px;
+position:absolute;
+}
+#submit
+{
+display:block-inline;
+margin-top:-30px;
+margin-left:300px;
+}
+
+
+#images
+{
+background:grey;
+width:800;
+height:300;
+overflow:scroll;
+white-space:nowrap;
+padding-top:20px;
+margin-top:20px;
+}
+
+#content{
+width:80%;
+margin-left:310px;
+}
+
+button
+{
+list-style:none;
+text-align:center;
+padding: 0;
+cursor: pointer;
+
+}
+
+image box couldn't implement made canvas go blank
+/*
+#displayOuter {
+position: fixed;
+top: 0px;left: 0px;
+width: 100%;
+height: 100%;
+background: rgba(100,100,100,0.5);
+text-align: center;
+display: none;
+}
+#displayInner {
+position: absolute;
+top: 50%;
+left: 50%;
+background: white;
+border: 2px solid black;
+text-align: center;
+padding: 20px;
+}
+#displayClose a {color: black; padding-top:}
+#displayClose {margin-top: 20px}
+*/
+
+
+
+
+
+
+
