@@ -1,0 +1,494 @@
+<html>
+<head><title>Canvas</title>
+
+<link rel="stylesheet" type="text/css" href="canvas.css">
+
+
+</head>
+<body>
+<div id="content">
+<canvas id="canvas" width="800" height="500">
+ <p>Your browser doesn't support canvas.</p>
+ </canvas>
+
+<script type="text/javascript">
+var ctx=document.getElementById("canvas").getContext("2d");
+
+
+var numImage=0;
+
+//local storage store charts after refreshed
+function load()
+{
+
+
+var image=canvas.toDataURL();
+
+for(i=0;i<localStorage.length;i++){
+
+
+var newImage= document.createElement('img');
+newImage.setAttribute('src',localStorage.getItem(String(i)));
+newImage.setAttribute('width', 300);
+newImage.setAttribute('height', 200);
+newImage.style.backgroundColor="#fa8072";
+newImage.style.padding="25px";
+newImage.style.backgroundColor="#fa8072";
+newImage.style.border="thick solid white";
+document.getElementById('images').appendChild(newImage);
+}
+}
+
+//save content to local storage
+function save()
+{
+var image=canvas.toDataURL();
+
+var x=localStorage.setItem(numImage++,image);
+
+var newImage= document.createElement('img');
+newImage.setAttribute('src', image);
+newImage.setAttribute('width', 300);
+newImage.setAttribute('height', 200);
+newImage.style.padding="25px";
+newImage.style.backgroundColor="#fa8072";
+newImage.style.border="thick solid white";
+document.getElementById('images').appendChild(newImage);
+
+}
+
+//circle();
+function init(){
+
+canvas.width=canvas.width;
+text();
+circle();
+//line-x
+
+ctx.beginPath();
+ctx.moveTo(60, 400);
+ctx.lineTo(780, 400);
+ctx.stroke();
+//Line y
+
+ctx.beginPath();
+ctx.moveTo(60, 400);
+ctx.lineTo(60, 50);
+ctx.stroke();
+
+load();
+
+var
+loader = new Image();
+loader.src = "loader.gif";
+}
+
+//Tried to implement imagebox made the canvas go blank
+/*var
+loader = new Image();
+loader.src = "loader.gif";*/
+
+//image box
+/*functiongetDisplayDiv()
+{
+var html ="";
+html+= "<div id = \"displayOuter\">";
+html+= " <div id = \"displayInner\">";
+html+= " <img src = \"loader.gif\">";
+html+= " <div id = \"displayClose\">";
+html+= " <a href = \"#\" ";
+html+= " onclick = \"return closer();\"> ";
+html+= " Close ";
+html+= " </a>";
+html+= " </div>";
+html+= " </div>";
+html+= "</div>";
+return html;
+}
+
+function displayImg()
+{
+var newimg = document.createElement("img");
+newimg.src = this.href;
+newimg.onload = showNewImage;
+var displayDiv = document.getElementById("displayOuter");
+displayDiv.style.display= "block";
+positionDiv();
+return false;
+}
+
+function
+positionDiv()
+{
+var box = document.getElementById("displayInner");
+var boxwidth = box.scrollWidth;
+box.style.marginLeft = -boxwidth/2;
+var boxheight = box.scrollHeight;
+box.style.marginTop = -boxheight/2;
+}
+
+function showNewImage()
+{
+var oldimgdiv = document.getElementById("displayInner");
+var oldimg = oldimgdiv.getElementsByTagName("img")[0];
+oldimgdiv.replaceChild(this,oldimg );
+positionDiv();
+}
+
+function
+showNewImage()
+{
+var oldimgdiv = document.getElementById("displayInner");
+var oldimg = oldimgdiv.getElementsByTagName("img")[0];
+oldimgdiv.replaceChild(this,oldimg );
+positionDiv();
+}
+function closer()
+{
+var oldimgdiv = document.getElementById("displayInner");
+var oldimg = oldimgdiv.getElementsByTagName("img")[0];
+oldimgdiv.replaceChild(loader,oldimg);
+positionDiv();
+var displayDiv = document.getElementById("displayOuter");
+displayDiv.style.display= "none";
+return false;
+}
+
+function
+start()
+{
+document.body.innerHTML+=getDisplayDiv();
+var els = document.getElementsByTagName("a");
+for (i = 0; i<els.length; i++)
+{
+if (els[i].getAttribute("rel") == "showimage")
+{
+els[i].onclick = displayImg;
+}
+}
+}*/
+
+//window.onkeypress= closer;
+
+//tried to add title to text nothing happens when click button. 
+function addTitle()
+{
+
+document.getElementByName(addTitles).onKeypress=checkKey;
+var title=document.getElementById("titleValue").value;
+
+var add=document.getElementById("canvas");
+var ctx = add.getContext("2d");
+var width=add.clientWidth;
+
+//ctx.fillStyle = "black";
+//ctx.strokeStyle = "black";
+ctx.fill;
+ctx.font='10pt Calibri';
+ctx.textAlign = 'right'; 
+                             
+ctx.fillText('title',90,420);
+
+ctx.stroke();
+
+
+
+}
+
+function checkKey(e)
+{
+	 var code = e.keyCode;
+	
+if(code == 13) 
+	 { 
+ 	 	 	 addTitle();
+	 }
+}
+
+
+//add text to canvas
+function text(){
+ctx.font='10pt Calibri';
+ctx.fillText('Monday',90,420);
+ctx.fillText('Tuesday',190,420);
+ctx.fillText('Wednesday',300,420);
+ctx.fillText('Thursday',415,420);
+ctx.fillText('Friday',510,420);
+ctx.fillText('Saturday',610,420);
+ctx.fillText('sunday',710,420);
+}
+
+//add circles to canvas
+function circle()
+{
+var radius=10;
+ctx.fillStyle="#000000";
+
+var mon =document.getElementById("monday").value;
+var tue =document.getElementById("tuesday").value;
+var wed =document.getElementById("wednesday").value;
+var thur =document.getElementById("thursday").value;
+var fri =document.getElementById("friday").value;
+var sat =document.getElementById("saturday").value;
+var sun =document.getElementById("sunday").value;
+
+//mon
+ctx.beginPath();
+ctx.arc(130,mon,radius,0,2*Math.PI);
+ctx.moveTo(60,400);
+ctx.lineTo(130,mon);
+ctx.fill();
+ctx.closePath();
+ctx.stroke();
+
+
+//tue
+ctx.beginPath();
+ctx.arc(230,tue,radius,0,2*Math.PI);
+ctx.moveTo(130,mon);
+ctx.lineTo(230,tue);
+ctx.fill();
+ctx.closePath();
+ctx.stroke();
+
+
+
+//wed
+ctx.beginPath();
+ctx.arc(330,wed,radius,0,2*Math.PI);
+ctx.moveTo(230,tue);
+ctx.lineTo(330,wed);
+ctx.fill();
+ctx.closePath();
+ctx.stroke();
+
+
+//thur
+ctx.beginPath();
+ctx.arc(430,thur,radius,0,2*Math.PI);
+ctx.moveTo(330,wed);
+ctx.lineTo(430,thur);
+ctx.fill();
+ctx.closePath();
+ctx.stroke();
+
+
+//fri
+ctx.beginPath();
+ctx.arc(530,fri,radius,0,2*Math.PI);
+ctx.moveTo(430,thur);
+ctx.lineTo(530,fri);
+ctx.fill();
+ctx.closePath();
+ctx.stroke();
+
+
+//sat
+ctx.beginPath();
+ctx.arc(630,sat,radius,0,2*Math.PI);
+ctx.moveTo(530,fri);
+ctx.lineTo(630,sat);
+ctx.fill();
+ctx.closePath();
+ctx.stroke();
+
+
+
+//sun
+ctx.beginPath();
+ctx.arc(730,sun,radius,0,2*Math.PI);
+ctx.moveTo(630,sat);
+ctx.lineTo(730,sun);
+ctx.fill();
+
+
+ctx.closePath();
+ctx.stroke();
+
+}
+
+window.onload=init;
+</script>
+
+<div id="days">
+<select id="monday" onchange="init()" >
+<option value="400" >0</option>
+<option value="395">5</option>
+<option value="390">10</option>
+<option value="385">15</option>
+<option value="380">20</option>
+<option value="275">25</option>
+<option value="270">30</option>
+<option value="265">35</option>
+<option value="260">40</option>
+<option value="255">45</option>
+<option value="250">50</option>
+<option value="245">55</option>
+<option value="240">60</option>
+<option value="235">65</option>
+<option value="230">70</option>
+<option value="225">75</option>
+<option value="220">80</option>
+<option value="215">85</option>
+<option value="210">90</option>
+<option value="205">95</option>
+<option value="200">100</option>
+</select>
+
+<select id="tuesday" onchange="init()">
+<option value="400">0</option>
+<option value="395">5</option>
+<option value="390">10</option>
+<option value="385">15</option>
+<option value="380">20</option>
+<option value="275">25</option>
+<option value="270">30</option>
+<option value="265">35</option>
+<option value="260">40</option>
+<option value="255">45</option>
+<option value="250">50</option>
+<option value="245">55</option>
+<option value="240">60</option>
+<option value="235">65</option>
+<option value="230">70</option>
+<option value="225">75</option>
+<option value="220">80</option>
+<option value="215">85</option>
+<option value="210">90</option>
+<option value="205">95</option>
+<option value="200">100</option>
+</select>
+
+<select id="wednesday" onchange="init()">
+<option value="400">0</option>
+<option value="395">5</option>
+<option value="390">10</option>
+<option value="385">15</option>
+<option value="380">20</option>
+<option value="275">25</option>
+<option value="270">30</option>
+<option value="265">35</option>
+<option value="260">40</option>
+<option value="255">45</option>
+<option value="250">50</option>
+<option value="245">55</option>
+<option value="240">60</option>
+<option value="235">65</option>
+<option value="230">70</option>
+<option value="225">75</option>
+<option value="220">80</option>
+<option value="215">85</option>
+<option value="210">90</option>
+<option value="205">95</option>
+<option value="200">100</option>
+</select>
+
+<select id="thursday" onchange="init()">
+<option value="400">0</option>
+<option value="395">5</option>
+<option value="390">10</option>
+<option value="385">15</option>
+<option value="380">20</option>
+<option value="275">25</option>
+<option value="270">30</option>
+<option value="265">35</option>
+<option value="260">40</option>
+<option value="255">45</option>
+<option value="250">50</option>
+<option value="245">55</option>
+<option value="240">60</option>
+<option value="235">65</option>
+<option value="230">70</option>
+<option value="225">75</option>
+<option value="220">80</option>
+<option value="215">85</option>
+<option value="210">90</option>
+<option value="205">95</option>
+<option value="200">100</option>
+</select>
+
+<select id="friday" onchange="init()">
+<option value="400">0</option>
+<option value="395">5</option>
+<option value="390">10</option>
+<option value="385">15</option>
+<option value="380">20</option>
+<option value="275">25</option>
+<option value="270">30</option>
+<option value="265">35</option>
+<option value="260">40</option>
+<option value="255">45</option>
+<option value="250">50</option>
+<option value="245">55</option>
+<option value="240">60</option>
+<option value="235">65</option>
+<option value="230">70</option>
+<option value="225">75</option>
+<option value="220">80</option>
+<option value="215">85</option>
+<option value="210">90</option>
+<option value="205">95</option>
+<option value="200">100</option>
+</select>
+
+<select id="saturday" onchange="init()">
+<option value="400">0</option>
+<option value="395">5</option>
+<option value="390">10</option>
+<option value="385">15</option>
+<option value="380">20</option>
+<option value="275">25</option>
+<option value="270">30</option>
+<option value="265">35</option>
+<option value="260">40</option>
+<option value="255">45</option>
+<option value="250">50</option>
+<option value="245">55</option>
+<option value="240">60</option>
+<option value="235">65</option>
+<option value="230">70</option>
+<option value="225">75</option>
+<option value="220">80</option>
+<option value="215">85</option>
+<option value="210">90</option>
+<option value="205">95</option>
+<option value="200">100</option>
+</select>
+
+<select id="sunday" onchange="init()">
+<option value="400">0</option>
+<option value="395">5</option>
+<option value="390">10</option>
+<option value="385">15</option>
+<option value="380">20</option>
+<option value="275">25</option>
+<option value="270">30</option>
+<option value="265">35</option>
+<option value="260">40</option>
+<option value="255">45</option>
+<option value="250">50</option>
+<option value="245">55</option>
+<option value="240">60</option>
+<option value="235">65</option>
+<option value="230">70</option>
+<option value="225">75</option>
+<option value="220">80</option>
+<option value="215">85</option>
+<option value="210">90</option>
+<option value="205">95</option>
+<option value="200">100</option>
+</select>
+</div>
+
+<div id="submit">
+<button id="save" onclick="save()" >save</button>
+<input type="text" id="titleValue" class="field" name="title"/>
+<button id="button" type="submit" id ="titleAdd" name="addTitles" value="Add Title" onsubmit="addTitle()" >add title</button>
+</div>
+
+<div id ="images">
+</div>
+</div>
+</body>
+
+</html>
