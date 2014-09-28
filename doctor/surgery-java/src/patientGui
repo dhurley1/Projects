@@ -1,0 +1,329 @@
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.awt.*;
+
+import javax.swing.*;
+
+import java.awt.event.*;
+import java.awt.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Date;
+import java.sql.*;
+
+public class PatientGui extends Database
+{
+	
+	JFrame f;
+	JLabel id;
+	JLabel name;
+	JLabel address;
+	JLabel num;
+	JLabel dob;
+	
+	JTextField t1;
+	JTextField t2;
+	JTextField t3;
+	JTextField t4;
+	JTextField t5;
+	
+	JTextArea ListOfPatients = new JTextArea(" Id     name   Phone NumberAddress  DOB");
+   
+    JButton PAdd = new JButton ("Add Patient");
+    JButton save = new JButton ("Save Patient");
+    JButton load = new JButton ("Load Patient");
+    JButton next = new JButton ("next Patient");
+    JButton pre = new JButton ("previous Patient");
+    JButton up = new JButton ("update Patient");
+    JButton del = new JButton ("delete Patient");
+    
+	public PatientGui(){
+		
+		frame();
+	}
+	
+	public void frame(){
+		
+		f= new JFrame();
+		f.setVisible(true);
+		//f.setSize(600,400);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		id= new JLabel("ID");
+		name= new JLabel("Name");
+		num= new JLabel("Number");
+		address= new JLabel("Address");
+		dob= new JLabel("DOB");
+		
+		t1= new JTextField(10);
+		t2= new JTextField(10);
+		t3= new JTextField(10);
+		t4= new JTextField(10);
+		t5= new JTextField(10);
+		
+		 ListOfPatients.append("\n");
+		    ListOfPatients.setEditable(false);
+		    ListOfPatients.setPreferredSize(new Dimension(400,230)); 
+		
+		JPanel p=new JPanel();
+		p.add(id);
+		p.add(t1);
+		p.add(name);p.add(t2);
+		p.add(num);p.add(t3);
+		p.add(address);p.add(t4);
+		p.add(dob);p.add(t5);
+		
+		//p.add(ListOfPatients);
+		p.add(PAdd);
+		p.add(save);
+		p.add(next);
+		p.add(pre);
+		p.add(del);
+		p.add(up);
+		
+		 up.addActionListener(new ActionListener() 
+         {
+             public void actionPerformed(ActionEvent e)
+             {
+            	
+            	String name= t2.getText();
+            	String  num= t3.getText();
+            	String address=t4.getText();
+               
+            	
+                
+                try{
+                
+                	rs.updateString("PNAME", name);
+                	rs.updateString("PHONE", num);
+                	rs.updateString("ADDRESS", address);
+                	rs.updateRow();
+                	
+                	JOptionPane.showMessageDialog(null,"updated");
+                }catch(Exception ex){
+                	
+                }
+           	   
+           	   
+           	   
+             }
+             
+         });
+		 
+		PAdd.addActionListener(new ActionListener() 
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+            	
+            	t2.setText("");
+            	t3.setText("");
+            	t4.setText("");
+            	
+            	
+            }
+            
+        });
+		
+		save.addActionListener(new ActionListener() 
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+            	String ids=t1.getText();
+            	String name=t2.getText();
+            	String num=t3.getText();
+            	String addr=t4.getText();
+            	String dob=t5.getText();
+            	
+            	
+            
+            
+            try
+            {
+            	rs.moveToInsertRow();
+            	rs.updateString("id",ids);
+            	rs.updateString("PNAME",name);
+            	rs.updateString("PHONE",num);
+            	rs.updateString("ADDRESS",addr);
+            	rs.updateString("DOB",dob);
+            	
+            	rs.insertRow();
+            	stmt.close();
+            	rs.close();
+            	
+            }catch(Exception ex){
+            	
+            }
+            }
+        });
+		
+		
+		
+		 del.addActionListener(new ActionListener() 
+         {
+             public void actionPerformed(ActionEvent e)
+             {
+            	try {
+					rs.deleteRow();
+					
+					stmt.close();
+					rs.close();
+					
+					
+				      
+				     
+				    /*  stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+
+				      String sql="select * from patient";
+				       rs = stmt.executeQuery(sql);
+				       
+				       rs.next();*/
+				} catch (Exception ex) {
+					
+				} 
+             }
+             
+         });
+          	   
+            
+		 next.addActionListener(new ActionListener() 
+         {
+             public void actionPerformed(ActionEvent e)
+             {
+          	   try{
+          		   if (rs.next())
+          		   {
+          			 t1.setText(Integer.toString(rs.getInt("id")));
+          			 t2.setText(rs.getString("PNAME")); 
+          			 t3.setText(rs.getString("PHONE")); 
+          			 t4.setText(rs.getString("ADDRESS")); 
+          			 t5.setText((rs.getDate("DOB").toString())); 
+          			 
+          			 
+          		   }
+          		   
+          		   else{
+          			   rs.previous();
+          			   JOptionPane.showMessageDialog(null,"No more records");
+          		   }
+          		   
+          	   }catch(Exception ex){
+          		   
+          	   }
+          	   
+          	   
+          	   
+             }
+             
+         });
+	
+		
+		 pre.addActionListener(new ActionListener() 
+         {
+             public void actionPerformed(ActionEvent e)
+             {
+          	   try{
+          		   if (rs.previous())
+          		   {
+          			 t1.setText(Integer.toString(rs.getInt("id")));
+          			 t2.setText(rs.getString("PNAME")); 
+          			 t3.setText(rs.getString("PHONE")); 
+          			 t4.setText(rs.getString("ADDRESS")); 
+          			 t5.setText((rs.getDate("DOB").toString())); 
+          			 
+          			 
+          		   }
+          		   
+          		   else{
+          			   rs.next();
+          			   JOptionPane.showMessageDialog(null,"No more records");
+          		   }
+          		   
+          	   }catch(Exception ex){
+          		   
+          	   }
+          	   
+          	   
+          	   
+             }
+             
+         });
+		
+		f.add(p);
+		f.setSize(800,800);
+		
+		try{
+			rs.next();
+			
+			
+			t1.setText(Integer.toString(rs.getInt("id")));
+			 t2.setText(rs.getString("PNAME")); 
+			 t3.setText(rs.getString("PHONE")); 
+			 t4.setText(rs.getString("ADDRESS")); 
+			 t5.setText((rs.getDate("DOB").toString())); 
+			
+			
+		}catch(Exception ex) {
+			
+		}
+		
+		
+       /*  t1.setLocation(10,40);
+         t2.setLocation(20,80);
+         t4.setLocation(50,100);
+        t3.setLocation(80,120);
+        t5.setLocation(100,140);
+         */
+	}
+	
+	
+	public void save()
+    {
+  	  Patient pat = new Patient(0, null, null, null, null);
+   	 try{
+  	  FileOutputStream file =new FileOutputStream("H://Java/Assignment/src/patient.txt");
+  	  ObjectOutputStream out = new ObjectOutputStream(file);      
+  	  out.writeObject(pat);
+        out.close();
+        file.close();
+        System.out.printf("Serialized data is saved in /tmp/employee.ser");
+   	 }catch(IOException i)
+       {
+           i.printStackTrace();
+       }
+    
+    }
+	
+
+    public void load()
+    {
+  	  Patient pat =null;
+  	  try
+  	  {
+  		  FileInputStream file = new FileInputStream("H://Java/Assignment/src/patient.txt");
+  		  ObjectInputStream in=new ObjectInputStream(file);
+  		  pat=(Patient) in.readObject();
+  		  in.close();
+  		  file.close();
+  	  }catch(IOException i)
+        {
+            i.printStackTrace();
+            return;
+        }catch (ClassNotFoundException c)
+        {
+      	  System.out.println("Employee class not found");
+            c.printStackTrace();
+            return;
+        }
+     
+  	  
+    }
+	
+}
+
