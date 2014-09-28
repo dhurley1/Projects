@@ -1,0 +1,86 @@
+<DOCTYPE! html>
+   <head>
+      <title>
+         Flicker
+      </title>
+      <meta charset="UTF-8">
+     
+       <link rel="stylesheet"  type="text/css"/ href="Canvas.CSS" charset="utf-8">
+
+      <script src="http://code.jquery.com/jquery-latest.js"></script>
+      <script src="Flickr.js" type="text/javascript"></script>
+       
+     
+   </head>
+   <body>
+
+<div id="content">
+         <div id="switchFlickr">
+            <h2>Switch</h2>
+            <img id="change-to-flickr" src="flickr.png"  alt="Link" width="50" height="50">
+      </div>
+       
+        
+         <div id="canvasContent">
+            <canvas id="myCanvas" width="400" height="500">
+            </canvas>
+            <div id="options">
+               <button id="download">Download</button>
+               <button id="clear">Clear</button>
+               &nbsp; 
+                Line: 
+               <!--Thickness-->
+               <select id="brushM">
+                  <option value="thin">Thin</option>
+                  <option value="medium">Medium</option>
+                  <option value="thick">Thick</option>
+               </select>
+
+               <!--Colour-->
+               <select id="colorMenu">
+                  <option value="black">Black</option>
+                  <option value="red">Red</option>
+                  <option value="blue">Blue</option>
+                  <option value="white">White</option>
+                  <option value="green">Green</option>
+               </select>
+
+           <!--Fill-->
+               &nbsp; Fill: <select id="fill">
+                      <option value="black">Black</option>
+                      <option value="red">Red</option>
+                      <option value="blue">Blue</option>
+                      <option value="white">White</option>
+                      <option value="green">Green</option>
+                </select>  
+            </div>
+         </div>
+      </div>
+     <script src="Canvas.js" type="text/javascript"></script>
+
+<!--Flickr page-->
+      <div id="flickr">
+         <div id="switch">
+            <h5>Switch</h5>
+            <img src="canvas.jpg" id="change-to-canvas" alt="CanvasLink" width="50" height="50">
+         </div>
+         <div id="main">
+            <div id="left">
+               <div id="find" value="getImages">Find Images</div>
+               <h3>Tags</h3>
+               <br>
+               <input id="userInput" name="userInput"></input>
+               <br>
+               <button id="addTag" onClick=addAttribute()>+</button>
+               <br>
+            </div>
+            <div id="right">
+            </div>
+         </div>
+      </div>
+
+      
+
+   </body>
+</html>
+
