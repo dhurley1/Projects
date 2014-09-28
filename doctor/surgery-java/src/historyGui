@@ -1,0 +1,41 @@
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.awt.*;
+
+import javax.swing.*;
+
+import java.awt.event.*;
+import java.io.IOException;
+import java.util.Date;
+
+
+public class HistoryGui extends JPanel {
+
+	public  HistoryGui(){
+		final Patient pat = new Patient(1, getName(), getName(), getName(), null);
+		  final ArrayList<PatientHistory> History=new ArrayList<PatientHistory>() ;
+		 Panel p1 = new Panel();
+         p1.setLayout(new BorderLayout());
+         
+         final JTextArea ListOfPatients = new JTextArea();
+         ListOfPatients.append("\n");
+         ListOfPatients.setEditable(false);
+         ListOfPatients.setPreferredSize(new Dimension(400,230)); 
+         JButton update = new JButton ("update");
+         
+
+         update.addActionListener(new ActionListener() 
+            {
+        	 
+        	 public void actionPerformed(ActionEvent e)
+             {
+        		  System.out.println(History);
+             }              
+            } );
+		
+         add(ListOfPatients);
+         add(update);
+		
+	}
+
+}
